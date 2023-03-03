@@ -1,6 +1,6 @@
 #include <iostream>
 
-class Game{
+class Game {
 	public:
 		void getNumberOfGuessesFromUser(){
 			std::string userInputGuesses;
@@ -22,9 +22,13 @@ class Game{
 
 };
 
-class Word{
+class Word {
 	public:
 		std::string randomWord = "hello world";
+};
+
+class Guess {
+
 };
 
 int main(){
