@@ -17,6 +17,10 @@ public:
 		srand(time(0));
 		int randomNumber = 1 + (rand() % randomWordVector.size());
 		this->randomWord = randomWordVector[randomNumber];
+		for (int i = 0; i < this->randomWord.size(); i++)
+		{
+			this->displayVector.push_back("_");
+		}
 	}
 
 	bool guessLetter()
@@ -62,19 +66,30 @@ public:
 		else
 		{
 			std::cout << "Nice job! That letter appears in our target word." << std::endl;
-			this->guessedLettersVector.push_back(guessedLetter);
+			for (auto index : indexVector)
+			{
+				this->displayVector[index] = guessedLetter;
+			}
 			return true;
 		}
 	}
 
-	void printWordStatus()
+	void printWord()
 	{
 		std::cout << this->randomWord << std::endl;
+	}
+	void printDisplay()
+	{
+		for (auto letter : displayVector)
+		{
+			std::cout << letter << " ";
+		}
 	}
 
 private:
 	std::string randomWord;
 	std::vector<std::string> guessedLettersVector;
+	std::vector<std::string> displayVector;
 };
 
 class Game
@@ -83,10 +98,12 @@ public:
 	void run()
 	{
 		std::cout << "Welcome to hangman!  You will have 10 guesses to find our word! Good luck!" << std::endl;
-		this->word.printWordStatus();
+		this->word.printWord();
+		this->word.printDisplay();
 		while (incorrectGuesses < 10)
 		{
 			this->printGameStatus();
+			this->word.printDisplay();
 			std::cout << std::endl;
 			std::cout << std::endl;
 			std::cout << std::endl;
