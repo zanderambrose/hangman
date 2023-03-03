@@ -87,6 +87,9 @@ public:
 		while (incorrectGuesses < 10)
 		{
 			this->printGameStatus();
+			std::cout << std::endl;
+			std::cout << std::endl;
+			std::cout << std::endl;
 			this->printGuessesLeft();
 			bool isCorrectGuess = this->word.guessLetter();
 			if (isCorrectGuess)
@@ -98,6 +101,7 @@ public:
 				this->incorrectGuesses++;
 			}
 		}
+		this->printGameStatus();
 		std::cout << "You lose!" << std::endl;
 	}
 
