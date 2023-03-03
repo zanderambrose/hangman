@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 class Game
 {
@@ -30,15 +31,25 @@ class Word
 public:
 	Word()
 	{
-		this->randomWord = "hello random";
+		std::vector<std::string> randomWordVector;
+		std::ifstream file("randomwords.txt");
+		std::string word;
+		while (std::getline(file, word))
+			randomWordVector.push_back(word);
+
+		srand(time(0));
+		int randomNumber = 1 + (rand() % randomWordVector.size());
+		this->randomWord = randomWordVector[randomNumber];
 	}
+
 	bool guessLetter(char letter)
 	{
 		return true;
 	}
+
 	void printWordStatus()
 	{
-		std::cout << "Word Status" << std::endl;
+		std::cout << this->randomWord << std::endl;
 	}
 
 private:
@@ -48,6 +59,9 @@ private:
 int main()
 {
 	Game hangman;
-	hangman.printGameStatus();
+	Word word;
+
+	// hangman.printGameStatus();
+	word.printWordStatus();
 	return 0;
 }
