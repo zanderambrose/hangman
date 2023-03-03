@@ -103,8 +103,8 @@ public:
 		while (incorrectGuesses < 10)
 		{
 			this->printGameStatus();
-			this->word.printDisplay();
 			std::cout << std::endl;
+			this->word.printDisplay();
 			std::cout << std::endl;
 			std::cout << std::endl;
 			this->printGuessesLeft();
