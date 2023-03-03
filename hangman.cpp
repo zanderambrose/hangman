@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 class Game
 {
@@ -25,7 +26,6 @@ public:
 	{
 		if (this->totalGuesses > 0)
 		{
-			std::cout << "just checking" << std::endl;
 			this->totalGuesses -= guesses;
 		}
 	}
@@ -37,21 +37,23 @@ public:
 	}
 	void printGameStatus()
 	{
-		std::cout << "  | " << std::endl;
-		std::cout << "  | " << std::endl;
-		std::cout << " [ ";
-		std::cout << "]" << std::endl;
-		std::cout << "  | " << std::endl;
-		std::cout << "-- ";
-		std::cout << "-- " << std::endl;
-		std::cout << "  | " << std::endl;
-		std::cout << " /";
-		std::cout << " \\" << std::endl;
+		for (int i = 0; i < this->display.size(); i++)
+		{
+			if (i != 2 && i != 5 && i != 8)
+			{
+				std::cout << this->display[i] << std::endl;
+			}
+			else
+			{
+				std::cout << this->display[i];
+			}
+		}
 	}
 
 private:
 	int totalGuesses;
 	bool isTotalGuessesInitialized = false;
+	std::vector<std::string> display{"  | ", "  | ", " [ ", "]", "  | ", "-- ", "-- ", "  | ", " /", " \\"};
 };
 
 class Word
