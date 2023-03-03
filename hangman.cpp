@@ -10,7 +10,9 @@ class Game {
 			this->setTotalGuesses(convertedUserInput);
 		} 
 		void setTotalGuesses(int guesses){
-			this->totalGuesses = guesses;
+            this->totalGuesses -= guesses;
+			if(this->totalGuesses > 0){
+			}
 		}
 		std::string getTotalGuesses(){
 			std::cout << "TO STRING: " << std::to_string(this->totalGuesses) << std::endl;
