@@ -8,16 +8,28 @@ public:
 		std::string userInputGuesses;
 		std::cout << "How many guesses would you like to have? " << std::flush;
 		std::getline(std::cin, userInputGuesses);
-		int convertedUserInput = std::stoi(userInputGuesses);
-		this->setTotalGuesses(convertedUserInput);
+		this->setTotalGuesses(userInputGuesses);
 	}
+
+	void setTotalGuesses(std::string guesses)
+	{
+		if (this->isTotalGuessesInitialized == false)
+		{
+			int convertedUserInput = std::stoi(guesses);
+			this->totalGuesses = convertedUserInput;
+			this->isTotalGuessesInitialized = true;
+		}
+	}
+
 	void setTotalGuesses(int guesses)
 	{
 		if (this->totalGuesses > 0)
 		{
+			std::cout << "just checking" << std::endl;
 			this->totalGuesses -= guesses;
 		}
 	}
+
 	std::string getTotalGuesses()
 	{
 		std::cout << "TO STRING: " << std::to_string(this->totalGuesses) << std::endl;
@@ -26,6 +38,7 @@ public:
 
 private:
 	int totalGuesses;
+	bool isTotalGuessesInitialized = false;
 };
 
 class Word
