@@ -5,6 +5,21 @@
 class Game
 {
 public:
+	void run()
+	{
+		std::cout << "Welcome to hangman!  You will have 10 guesses to find our word! Good luck!" << std::endl;
+		while (guessesLeft > 0)
+		{
+			this->printGameStatus();
+			this->printGuessesLeft();
+			this->guessesLeft--;
+		}
+	}
+
+private:
+	int guessesLeft = 10;
+	bool isTotalGuessesInitialized = false;
+	std::vector<std::string> display{"  | ", "  | ", " [ ", "]", "  | ", "-- ", "-- ", "  | ", " /", " \\"};
 	void printGameStatus()
 	{
 		for (int i = 0; i < this->display.size(); i++)
@@ -19,11 +34,10 @@ public:
 			}
 		}
 	}
-
-private:
-	int totalGuesses;
-	bool isTotalGuessesInitialized = false;
-	std::vector<std::string> display{"  | ", "  | ", " [ ", "]", "  | ", "-- ", "-- ", "  | ", " /", " \\"};
+	void printGuessesLeft()
+	{
+		std::cout << "Guesses left: " << this->guessesLeft << std::endl;
+	}
 };
 
 class Word
@@ -61,7 +75,7 @@ int main()
 	Game hangman;
 	Word word;
 
-	// hangman.printGameStatus();
-	word.printWordStatus();
+	hangman.run();
+	// word.printWordStatus();
 	return 0;
 }
