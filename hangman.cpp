@@ -25,31 +25,44 @@ public:
 		std::cout << "Select a letter: ";
 		std::string guessedLetter;
 		std::getline(std::cin, guessedLetter);
+
+		// Make sure they only entered one letter
 		if (guessedLetter.size() > 1)
 		{
 			std::cout << "You can only guess one letter!  Try again." << std::endl;
 			this->guessLetter();
 		}
+
+		// Check if they already guessed this letter
 		if (std::find(guessedLettersVector.begin(), guessedLettersVector.end(), guessedLetter) != guessedLettersVector.end())
 		{
-			std::cout << "You have already guessed this letter!  Tru again." << std::endl;
+			std::cout << "You have already guessed this letter!  Try again." << std::endl;
 			this->guessLetter();
 		}
-		else
+
+		// Add guessed letter to our guessed letter vector
+		this->guessedLettersVector.push_back(guessedLetter);
+
+		// Discover if letter exists in target word
+		size_t position = this->randomWord.find(guessedLetter);
+		while (position != std::string::npos)
 		{
-			size_t position = this->randomWord.find(guessedLetter);
-			while (position != std::string::npos)
-			{
-				indexVector.push_back(position);
-				this->randomWord.find(guessedLetter, position + 1);
-			}
+			indexVector.push_back(position);
+			position = this->randomWord.find(guessedLetter, position + 1);
 		}
+
+		// Logic for letter not found
 		if (indexVector.empty())
 		{
+			std::cout << "That letter does not appear in our target word." << std::endl;
 			return false;
 		}
+
+		// Logic for letter found
 		else
 		{
+			std::cout << "Nice job! That letter appears in our target word." << std::endl;
+			this->guessedLettersVector.push_back(guessedLetter);
 			return true;
 		}
 	}
@@ -70,8 +83,10 @@ public:
 	void run()
 	{
 		std::cout << "Welcome to hangman!  You will have 10 guesses to find our word! Good luck!" << std::endl;
+		this->word.printWordStatus();
 		while (incorrectGuesses < 10)
 		{
+			this->printGameStatus();
 			this->printGuessesLeft();
 			bool isCorrectGuess = this->word.guessLetter();
 			if (isCorrectGuess)
