@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <algorithm>
 
 class Word
 {
@@ -20,14 +21,37 @@ public:
 
 	bool guessLetter()
 	{
+		std::vector<size_t> indexVector;
 		std::cout << "Select a letter: ";
 		std::string guessedLetter;
 		std::getline(std::cin, guessedLetter);
 		if (guessedLetter.size() > 1)
 		{
 			std::cout << "You can only guess one letter!  Try again." << std::endl;
+			this->guessLetter();
 		}
-		return false;
+		if (std::find(guessedLettersVector.begin(), guessedLettersVector.end(), guessedLetter) != guessedLettersVector.end())
+		{
+			std::cout << "You have already guessed this letter!  Tru again." << std::endl;
+			this->guessLetter();
+		}
+		else
+		{
+			size_t position = this->randomWord.find(guessedLetter);
+			while (position != std::string::npos)
+			{
+				indexVector.push_back(position);
+				this->randomWord.find(guessedLetter, position + 1);
+			}
+		}
+		if (indexVector.empty())
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 
 	void printWordStatus()
@@ -37,7 +61,7 @@ public:
 
 private:
 	std::string randomWord;
-	std::vector<char> guessedLettersVector;
+	std::vector<std::string> guessedLettersVector;
 };
 
 class Game
@@ -48,7 +72,6 @@ public:
 		std::cout << "Welcome to hangman!  You will have 10 guesses to find our word! Good luck!" << std::endl;
 		while (incorrectGuesses < 10)
 		{
-			// this->printGameStatus();
 			this->printGuessesLeft();
 			bool isCorrectGuess = this->word.guessLetter();
 			if (isCorrectGuess)
