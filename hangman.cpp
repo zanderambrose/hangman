@@ -2,7 +2,7 @@
 
 class Game{
 	public:
-		void getNumberOfGuesses(){
+		void getNumberOfGuessesFromUser(){
 			std::string userInputGuesses;
 			std::cout << "How many guesses would you like to have? " << std::flush;
 			std::getline(std::cin,userInputGuesses);
@@ -29,7 +29,7 @@ class Word{
 
 int main(){
 	Game hangman;
-	hangman.getNumberOfGuesses();
+	hangman.getNumberOfGuessesFromUser();
 	hangman.getTotalGuesses();
 	return 0;
 }
