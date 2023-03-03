@@ -35,6 +35,19 @@ public:
 		std::cout << "TO STRING: " << std::to_string(this->totalGuesses) << std::endl;
 		return std::to_string(this->totalGuesses);
 	}
+	void printGameStatus()
+	{
+		std::cout << "  | " << std::endl;
+		std::cout << "  | " << std::endl;
+		std::cout << " [ ";
+		std::cout << "]" << std::endl;
+		std::cout << "  | " << std::endl;
+		std::cout << "-- ";
+		std::cout << "-- " << std::endl;
+		std::cout << "  | " << std::endl;
+		std::cout << " /";
+		std::cout << " \\" << std::endl;
+	}
 
 private:
 	int totalGuesses;
@@ -54,7 +67,8 @@ class Guess
 int main()
 {
 	Game hangman;
-	hangman.getNumberOfGuessesFromUser();
-	hangman.getTotalGuesses();
+	hangman.printGameStatus();
+	// hangman.getNumberOfGuessesFromUser();
+	// hangman.getTotalGuesses();
 	return 0;
 }
