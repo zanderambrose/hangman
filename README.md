@@ -4,16 +4,16 @@
 
 ## Get Started
 
-1. clone this repo
+- clone this repo
 
 ```console
 foo@bar: $ git clone https://github.com/zanderambrose/hangman.git <path/to/directory>
 ```
 
-1. run command
+- run command
 
 ```console
 foo@bar: $ make
 ```
 
-1. Begin playing!
+- Begin playing!
