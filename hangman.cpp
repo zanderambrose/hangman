@@ -86,6 +86,17 @@ public:
 			std::cout << letter << " ";
 		}
 	}
+	bool isGameOver()
+	{
+		if (std::find(displayVector.begin(), displayVector.end(), "_") != displayVector.end())
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
 
 private:
 	std::string randomWord;
@@ -102,6 +113,11 @@ public:
 		this->word.printWord();
 		while (incorrectGuesses < 10)
 		{
+			if (word.isGameOver())
+			{
+				std::cout << "You Won!" << std::endl;
+				break;
+			}
 			this->printGameStatus();
 			std::cout << std::endl;
 			this->word.printDisplay();
@@ -119,7 +135,10 @@ public:
 			}
 		}
 		this->printGameStatus();
-		std::cout << "You lose!" << std::endl;
+		if (incorrectGuesses == 10)
+		{
+			std::cout << "You lose!" << std::endl;
+		}
 	}
 
 private:
