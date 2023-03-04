@@ -26,6 +26,7 @@ public:
 	bool guessLetter()
 	{
 		std::vector<size_t> indexVector;
+		std::cout << std::endl;
 		std::cout << "Select a letter: ";
 		std::string guessedLetter;
 		std::getline(std::cin, guessedLetter);
@@ -117,6 +118,7 @@ public:
 				std::cout << "You Won!" << std::endl;
 				break;
 			}
+			std::cout << std::endl;
 			this->printGameStatus();
 			std::cout << std::endl;
 			this->word.printDisplay();
