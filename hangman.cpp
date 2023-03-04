@@ -139,6 +139,8 @@ public:
 		if (incorrectGuesses == 10)
 		{
 			std::cout << "You lose!" << std::endl;
+			std::cout << "The word was: ";
+			this->word.printWord();
 		}
 	}
 
