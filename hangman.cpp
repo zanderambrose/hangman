@@ -110,7 +110,6 @@ public:
 	void run()
 	{
 		std::cout << "Welcome to hangman!  You will have 10 guesses to find our word! Good luck!" << std::endl;
-		this->word.printWord();
 		while (incorrectGuesses < 10)
 		{
 			if (word.isGameOver())
